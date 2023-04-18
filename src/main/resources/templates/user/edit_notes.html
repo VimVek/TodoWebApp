@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeLeaf.org"
+      th:replace="user/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<section>
+    <div class="container-fluid p-3">
+        <div class="col-md-10 offset-md-1">
+            <div class="card paint-card">
+                <h3 class="text-center">Edit Notes</h3>
+                <!--
+                <div th:if="${session.msg}" class="text-center" role="alert">
+
+                    <h4 class="text-success" th:text="${session.msg}"></h4>
+                    <th:block th:text="${#session.removeAttribute('msg')}"></th:block>
+                </div>
+                -->
+                <div class="card-body">
+                    <form th:action="@{/user/updateNotes}" method="post">
+                        <div class="form-group">
+                            <label>Enter Title</label> <input type="text" th:value ="${notes.title}" class="form-control" name="title">
+                        </div>
+                        <div class="form-group">
+                            <label>Enter Description</label>
+                            <textarea rows="12" cols="" th:value ="${notes.content}" name="content" class="form-control">[[${notes.content}]]</textarea>
+                            <!-- To get the content in the edit area-->
+                        </div>
+                        <input type="hidden" th:value = "${notes.id}" name="id">  <!-- To get the id to so we can edit the particular notes-->
+                        <div class="text-center">
+                            <button class="btn btn-primary">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
